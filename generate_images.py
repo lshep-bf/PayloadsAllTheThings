@@ -18,9 +18,11 @@ def create_image_from_text(text, output_path):
     wrapped_text = textwrap.fill(text, width=70)
 
     # Calculate text size and position
-    text_size = draw.textsize(wrapped_text, font=font)
-    text_x = (width - text_size[0]) // 2
-    text_y = (height - text_size[1]) // 2
+    text_bbox = draw.textbbox((0, 0), wrapped_text, font=font)
+    text_width = text_bbox[2] - text_bbox[0]
+    text_height = text_bbox[3] - text_bbox[1]
+    text_x = (width - text_width) // 2
+    text_y = (height - text_height) // 2
 
     # Draw the text on the image
     draw.text((text_x, text_y), wrapped_text, font=font, fill=text_color)

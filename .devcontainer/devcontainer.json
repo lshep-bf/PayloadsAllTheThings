@@ -1,0 +1,12 @@
+{
+  "build": {
+    "args": {
+      "INSTALL_PYTHON_PACKAGES": "pip install pillow textwrap3"
+    }
+  },
+  "tasks": {
+    "build": "pip install pillow textwrap3",
+    "test": "echo \"There are no tests that need running\"",
+    "launch": "python generate_images.py"
+  }
+}
