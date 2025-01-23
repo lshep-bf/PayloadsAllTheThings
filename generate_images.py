@@ -43,16 +43,20 @@ def process_files(directory, output_directory):
         for file in files:
             if file.endswith((".md", ".txt", ".py", ".rb")):
                 file_path = os.path.join(root, file)
-                with open(file_path, "r") as f:
+                print(f"Processing file: {file_path}")
+                with open(file_path, "r", encoding='utf-8', errors='ignore') as f:
                     text = f.read()
 
                 output_path = os.path.join(output_directory, f"{subdir_name}_{image_counter}")
                 create_image_from_text(text, output_path)
+                print(f"Created images: {output_path}.jpg and {output_path}.png")
                 image_counter += 1
 
 if __name__ == "__main__":
     output_directory = "malicious-images"
     if not os.path.exists(output_directory):
         os.makedirs(output_directory)
+        print(f"Created directory: {output_directory}")
 
     process_files(".", output_directory)
+    print("Image generation completed.")
